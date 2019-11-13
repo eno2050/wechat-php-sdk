@@ -2401,6 +2401,7 @@ class Api
         $url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
         try {
             $res = HttpCurl::post($url, $xml);
+            // 是否禁止从外部加载XML实体
             libxml_disable_entity_loader(true);
             return json_decode(json_encode(simplexml_load_string($res, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
         } catch (\Exception $e) {
